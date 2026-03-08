@@ -22,5 +22,16 @@ namespace AppSoftware.Formularios
             frmApartados apartados = new frmApartados();
             apartados.Show();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void frmInicio_Load(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile("C:\\Users\\jmanu\\source\\repos\\AppSoftware\\AppSoftware\\images.png");
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        }
     }
 }

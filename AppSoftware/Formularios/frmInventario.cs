@@ -22,5 +22,10 @@ namespace AppSoftware.Formularios
             frmAgregar agregar = new frmAgregar();
             agregar.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

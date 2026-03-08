@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace AppSoftware.Formularios
 {
-    public partial class frmUsuarioscs : Form
+    public partial class frmAgregarProveedor : Form
     {
-        public frmUsuarioscs()
+        public frmAgregarProveedor()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            frmDatosUsuario datosUsuario = new frmDatosUsuario();
-            datosUsuario.Show();
         }
     }
 }
