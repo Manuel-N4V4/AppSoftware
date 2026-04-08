@@ -13,6 +13,47 @@ namespace AppSoftware
 {
     public partial class frmApartados : Form
     {
+        string rol;
+
+        public frmApartados(string rol)
+        {
+            InitializeComponent();
+            this.rol = rol;
+
+            btnEntradas.Enabled = false;
+            btnSalidas.Enabled = false;
+            btnProveedores.Enabled = false;
+            btnUsuarios.Enabled = false;
+            btnProductos.Enabled = false;
+
+            switch (this.rol)
+            {
+                case "Administrador":
+                    btnEntradas.Enabled = true;
+                    btnSalidas.Enabled = true;
+                    btnProveedores.Enabled = true;
+                    btnUsuarios.Enabled = true;
+                    btnProductos.Enabled = true;
+                    break;
+                case "Gerente":
+                    btnProductos.Enabled = true;
+                    btnProveedores.Enabled = true;
+                    btnUsuarios.Enabled = true;
+                    break;
+                case "Vendedor":
+                    btnEntradas.Enabled = true;
+                    btnSalidas.Enabled = true;
+                    break;
+                case "Compras":
+                    btnProveedores.Enabled = true;
+                    btnProductos.Enabled = true;
+                    break;
+                case "Almacenista":
+                    btnProductos.Enabled = true;
+                    break;
+            }
+        }
+
         public frmApartados()
         {
             InitializeComponent();
@@ -56,6 +97,8 @@ namespace AppSoftware
         private void button5_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmInicio inicio = new frmInicio();
+            inicio.Show();
         }
     }
 }

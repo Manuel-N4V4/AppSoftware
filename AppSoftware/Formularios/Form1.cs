@@ -13,6 +13,7 @@ namespace AppSoftware
 {
     public partial class Form1 : Form
     {
+        Conexion con = new Conexion();
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +34,29 @@ namespace AppSoftware
         {
             frmAgregar agregar = new frmAgregar();
             agregar.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            DataSet val = con.ejecutarConsulta($"SELECT * FROM Almacenamiento WHERE clvProducto = '{txtclvProducto.Text}'");
+            if (val != null)
+            {
+                dgvAlmacenamiento.DataSource = val.Tables[0];
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtclvProducto.Text))
+                return;
+
+            bool val = con.ejecutarComando($"DELETE FROM Almacenamiento WHERE clvProducto = '{txtclvProducto.Text}'");
+            if (val)
+            {
+                MessageBox.Show("Producto eliminado correctamente");
+                DataSet ds = con.ejecutarConsulta("SELECT * FROM Almacenamiento");
+                dgvAlmacenamiento.DataSource = ds.Tables[0];
+            }
         }
     }
 }

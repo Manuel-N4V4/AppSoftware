@@ -12,6 +12,7 @@ namespace AppSoftware.Formularios
 {
     public partial class frmProveedores : Form
     {
+        Conexion con = new Conexion();
         public frmProveedores()
         {
             InitializeComponent();
@@ -41,6 +42,16 @@ namespace AppSoftware.Formularios
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmProveedores_Activated(object sender, EventArgs e)
+        {
+            DataSet ds = con.ejecutarConsulta("Select * from Proveedores");
+
+            if(ds != null)
+            {
+                dgvProveedores.DataSource = ds.Tables[0];
+            }
         }
     }
 }

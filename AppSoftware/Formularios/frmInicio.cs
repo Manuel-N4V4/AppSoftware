@@ -12,6 +12,7 @@ namespace AppSoftware.Formularios
 {
     public partial class frmInicio : Form
     {
+        Conexion con = new Conexion();
         public frmInicio()
         {
             InitializeComponent();
@@ -19,8 +20,22 @@ namespace AppSoftware.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmApartados apartados = new frmApartados();
-            apartados.Show();
+            string sql = $"SELECT * FROM Usuario WHERE usuario = '{txtUsuario.Text}' AND contraseña = '{txtContraseña.Text}'";
+            DataSet ds = con.ejecutarConsulta(sql);
+
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                string rolUsuario = ds.Tables[0].Rows[0]["rol"].ToString();
+                MessageBox.Show($"Bienvenido a casa. Todos los sistemas de inventario están en línea. Nivel de acceso: {rolUsuario}", "J.A.R.V.I.S");
+
+                frmApartados apartados = new frmApartados(rolUsuario);
+                this.Hide();
+                apartados.Show();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos", "Sistema");
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
